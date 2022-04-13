@@ -63,8 +63,7 @@ const events = [{
         date: "06/01/2019",
     },
 ];
-
-// Builds the dropdown with a list of unique cities
+// Builds the dropdown with a list of unique cities - Fires on load
 function buildDropDown() {
 
     // First step is to get a handle on the dropdown
@@ -131,7 +130,6 @@ function getEventData(element) {
     displayStats(filteredEvents);
 
 }
-
 // Pulling the events from local storage or default array events
 function getEvents() {
     let curEvents = JSON.parse(localStorage.getItem("eventData"));
@@ -141,7 +139,6 @@ function getEvents() {
     }
     return curEvents;
 }
-
 // This function displays stats for the selected city
 function displayStats(filteredEvents) {
 
