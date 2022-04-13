@@ -66,6 +66,27 @@
                             <!-- City data goes here -->
                         </ul>
                     </div>
+                    <table class="table table-striped mt-2">
+                        <tr>
+                            <th colspan="2" id="statsHeader">Stats For All Events</th>
+                        </tr>
+                        <tr>
+                            <td>Total Attendence</td>
+                            <td id="total">100</td>
+                        </tr>
+                        <tr>
+                            <td>Average Attendence</td>
+                            <td id="average">100</td>
+                        </tr>
+                        <tr>
+                            <td>Most Attendence</td>
+                            <td id="most">100</td>
+                        </tr>
+                        <tr>
+                            <td>Least Attendence</td>
+                            <td id="least">100</td>
+                        </tr>
+                    </table>
                 </div>
                 <div class="col-12 col-md-6 order-first order-md-2">
                     <img src="/img/SuperDogEvents_600.png" class="img-fluid rounded-circle p-2">
@@ -102,7 +123,7 @@
 
     <template id="dropDown-template">
         <li>
-            <a class="dropdown-item" href="#"></a>
+            <a class="dropdown-item" onclick="getEventData(this)" href="#"></a>
         </li>
     </template>
 
