@@ -103,6 +103,9 @@ function buildDropDown() {
         ddLink.textContent = distinctCities[index];
         eventDD.appendChild(ddItem);
     }
+    let statsHeader = document.getElementById("statsHeader")
+    statsHeader.innerHTML = `Stats for All events`;
+
     displayStats(curEvents);
 }
 // Called everytime a city is clicked in the dropdown
