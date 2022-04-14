@@ -202,7 +202,7 @@ function displayEventData(curEvents) {
         eventBody.appendChild(eventRow);
     }
 }
-
+// This function adds/saves new events and adds them to the dropdown
 function saveEventData() {
     // Get all of the course data from local storage
     let curEvents = getEvents();
