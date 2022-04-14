@@ -106,6 +106,11 @@ function buildDropDown() {
     statsHeader.innerHTML = `Stats for All events`;
 
     displayStats(curEvents);
+
+    // Show data for all events
+    displayEventData(curEvents);
+
+
 }
 // Called everytime a city is clicked in the dropdown
 function getEventData(element) {
@@ -173,4 +178,58 @@ function displayStats(filteredEvents) {
         }
     );
 
+}
+// This function displays all event data in a grid on bottom of page
+function displayEventData(curEvents) {
+    let template = document.getElementById("eventData-template");
+    let eventBody = document.getElementById("eventBody");
+    // Clear the table of any prior data
+    eventBody.innerHTML = "";
+
+    // Loop over eventdata and write a row for each event - to the eventBody
+    for (let index = 0; index < curEvents.length; index++) {
+        let eventRow = document.importNode(template.content, true);
+
+        // Grab only the columns from the template - creates an array of columns in template
+        let eventCols = eventRow.querySelectorAll("td");
+
+        eventCols[0].textContent = curEvents[index].event;
+        eventCols[1].textContent = curEvents[index].city;
+        eventCols[2].textContent = curEvents[index].state;
+        eventCols[3].textContent = curEvents[index].attendance;
+        eventCols[4].textContent = new Date(curEvents[index].date).toLocaleDateString();
+
+        eventBody.appendChild(eventRow);
+    }
+}
+
+function saveEventData() {
+    // Get all of the course data from local storage
+    let curEvents = getEvents();
+
+    let eventObj = {
+        event: "name",
+        city: "city",
+        state: "state",
+        attendance: 0,
+        date: "01/01/2000"
+    }
+    //  Get the values from the form
+    eventObj.event = document.getElementById("newEventName").value;
+    eventObj.city = document.getElementById("newEventCity").value;
+    // Get values from the dropdown
+    let stateSel = document.getElementById("newEventState");
+    eventObj.state = stateSel.options[stateSel.selectedIndex].text;
+    // Turn the input into a number
+    let attendanceNbr = parseInt(document.getElementById("newEventAttendance").value,10);
+    eventObj.attendance = attendanceNbr;
+    // Format the date
+    let eventDate = document.getElementById("newEventDate").value;
+    let eventDateFormatted = `${eventDate} 00:00`;
+    eventObj.date = new Date(eventDateFormatted).toLocaleDateString();
+    // Save
+    curEvents.push(eventObj); 
+    localStorage.setItem("eventData", JSON.stringify(curEvents));
+
+    buildDropDown();
 }
